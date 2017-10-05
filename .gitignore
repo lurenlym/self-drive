@@ -4,3 +4,6 @@
 /beta_simulator.exe
 /model.h5
 /IMG/
+/logs
+/model_best.h5
+/model_last.h5

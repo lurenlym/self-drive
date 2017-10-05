@@ -82,8 +82,9 @@ model.add(Dense(256, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(1))
 
-model.compile(loss='mse', optimizer=optimizers.Adam(lr=0.0001))
+model.compile(loss='mse', optimizer=optimizers.Adam(lr=0.0001), metrics=['accuracy'])
+tbCallBack = keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True, write_images=True,)
 best_model = ModelCheckpoint('model_best.h5', verbose=2, save_best_only=True)
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=30, callbacks=[best_model])
+model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=30, callbacks=[best_model,tbCallBack])
 
 model.save('model_last.h5')
